@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-31T01:58:23.627Z",
+ "updatedAt": "2026-10-31T14:11:11.168Z",
  "colleges": [
   {
    "code": "BAR01",
@@ -10,13 +10,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 2354,
-     "updatedAt": "2026-10-31T01:13:23.056Z"
+     "updatedAt": "2026-10-31T13:34:13.550Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 2244,
-     "updatedAt": "2026-10-31T01:10:44.262Z"
+     "updatedAt": "2026-10-31T13:32:29.892Z"
     }
    ]
   },
@@ -29,19 +29,19 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 3502,
-     "updatedAt": "2026-10-31T01:22:41.473Z"
+     "updatedAt": "2026-10-31T13:42:52.522Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 3100,
-     "updatedAt": "2026-10-31T01:19:21.063Z"
+     "updatedAt": "2026-10-31T13:39:41.287Z"
     },
     {
      "name": "Summer 2027",
      "slug": "summer-2027",
      "sections": 782,
-     "updatedAt": "2026-10-31T01:16:12.017Z"
+     "updatedAt": "2026-10-31T13:36:54.505Z"
     }
    ]
   },
@@ -54,13 +54,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 340,
-     "updatedAt": "2026-10-31T01:19:45.514Z"
+     "updatedAt": "2026-10-31T13:40:02.875Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 301,
-     "updatedAt": "2026-10-31T01:16:56.530Z"
+     "updatedAt": "2026-10-31T13:37:19.425Z"
     }
    ]
   },
@@ -73,13 +73,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 12,
-     "updatedAt": "2026-10-31T01:20:18.462Z"
+     "updatedAt": "2026-10-31T13:40:26.718Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 1,
-     "updatedAt": "2026-10-31T01:16:59.420Z"
+     "updatedAt": "2026-10-31T13:37:25.104Z"
     }
    ]
   },
@@ -92,19 +92,19 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 2354,
-     "updatedAt": "2026-10-31T01:28:50.037Z"
+     "updatedAt": "2026-10-31T13:47:32.559Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 2267,
-     "updatedAt": "2026-10-31T01:25:05.918Z"
+     "updatedAt": "2026-10-31T13:44:01.968Z"
     },
     {
      "name": "Summer 2027",
      "slug": "summer-2027",
      "sections": 319,
-     "updatedAt": "2026-10-31T01:21:43.242Z"
+     "updatedAt": "2026-10-31T13:41:00.043Z"
     }
    ]
   },
@@ -117,13 +117,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 1800,
-     "updatedAt": "2026-10-31T01:26:50.910Z"
+     "updatedAt": "2026-10-31T13:47:02.546Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 1556,
-     "updatedAt": "2026-10-31T01:23:43.913Z"
+     "updatedAt": "2026-10-31T13:43:52.659Z"
     }
    ]
   },
@@ -136,13 +136,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 251,
-     "updatedAt": "2026-10-31T01:25:03.488Z"
+     "updatedAt": "2026-10-31T13:45:12.457Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 194,
-     "updatedAt": "2026-10-31T01:24:02.347Z"
+     "updatedAt": "2026-10-31T13:44:11.742Z"
     }
    ]
   },
@@ -155,13 +155,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 977,
-     "updatedAt": "2026-10-31T01:29:37.812Z"
+     "updatedAt": "2026-10-31T13:49:40.115Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 824,
-     "updatedAt": "2026-10-31T01:27:33.823Z"
+     "updatedAt": "2026-10-31T13:47:36.353Z"
     }
    ]
   },
@@ -174,13 +174,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 3879,
-     "updatedAt": "2026-10-31T01:37:21.480Z"
+     "updatedAt": "2026-10-31T13:57:18.323Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 3651,
-     "updatedAt": "2026-10-31T01:32:12.850Z"
+     "updatedAt": "2026-10-31T13:52:15.397Z"
     }
    ]
   },
@@ -193,13 +193,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 2227,
-     "updatedAt": "2026-10-31T01:35:14.166Z"
+     "updatedAt": "2026-10-31T13:53:07.795Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 2267,
-     "updatedAt": "2026-10-31T01:32:18.478Z"
+     "updatedAt": "2026-10-31T13:50:27.055Z"
     }
    ]
   },
@@ -212,13 +212,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 1989,
-     "updatedAt": "2026-10-31T01:34:37.425Z"
+     "updatedAt": "2026-10-31T13:54:39.792Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 2021,
-     "updatedAt": "2026-10-31T01:32:12.651Z"
+     "updatedAt": "2026-10-31T13:52:15.659Z"
     }
    ]
   },
@@ -231,13 +231,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 2943,
-     "updatedAt": "2026-10-31T01:41:10.116Z"
+     "updatedAt": "2026-10-31T13:59:02.692Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 2743,
-     "updatedAt": "2026-10-31T01:37:52.398Z"
+     "updatedAt": "2026-10-31T13:56:09.046Z"
     }
    ]
   },
@@ -250,13 +250,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 2027,
-     "updatedAt": "2026-10-31T01:42:49.569Z"
+     "updatedAt": "2026-10-31T14:01:48.041Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 2353,
-     "updatedAt": "2026-10-31T01:39:02.862Z"
+     "updatedAt": "2026-10-31T13:58:23.353Z"
     }
    ]
   },
@@ -269,13 +269,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 759,
-     "updatedAt": "2026-10-31T01:41:35.894Z"
+     "updatedAt": "2026-10-31T14:01:22.575Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 794,
-     "updatedAt": "2026-10-31T01:39:42.335Z"
+     "updatedAt": "2026-10-31T13:59:31.147Z"
     }
    ]
   },
@@ -288,13 +288,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 3490,
-     "updatedAt": "2026-10-31T01:57:52.718Z"
+     "updatedAt": "2026-10-31T14:05:01.012Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 3079,
-     "updatedAt": "2026-10-31T01:54:40.510Z"
+     "updatedAt": "2026-10-31T14:02:05.175Z"
     }
    ]
   },
@@ -307,13 +307,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 2056,
-     "updatedAt": "2026-10-31T01:48:52.132Z"
+     "updatedAt": "2026-10-31T14:07:55.399Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 1953,
-     "updatedAt": "2026-10-31T01:45:15.136Z"
+     "updatedAt": "2026-10-31T14:04:37.279Z"
     }
    ]
   },
@@ -326,13 +326,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 2005,
-     "updatedAt": "2026-10-31T01:57:12.195Z"
+     "updatedAt": "2026-10-31T14:05:45.552Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 1901,
-     "updatedAt": "2026-10-31T01:55:08.474Z"
+     "updatedAt": "2026-10-31T14:03:40.868Z"
     }
    ]
   },
@@ -345,13 +345,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 22,
-     "updatedAt": "2026-10-31T01:49:28.899Z"
+     "updatedAt": "2026-10-31T14:05:32.921Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 26,
-     "updatedAt": "2026-10-31T01:49:22.937Z"
+     "updatedAt": "2026-10-31T14:05:27.284Z"
     }
    ]
   },
@@ -364,13 +364,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 471,
-     "updatedAt": "2026-10-31T01:53:07.000Z"
+     "updatedAt": "2026-10-31T14:09:15.097Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 500,
-     "updatedAt": "2026-10-31T01:51:24.919Z"
+     "updatedAt": "2026-10-31T14:07:30.497Z"
     }
    ]
   },
@@ -383,13 +383,13 @@
      "name": "Fall 2026",
      "slug": "fall-2026",
      "sections": 1234,
-     "updatedAt": "2026-10-31T01:58:04.543Z"
+     "updatedAt": "2026-10-31T14:10:52.445Z"
     },
     {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 1137,
-     "updatedAt": "2026-10-31T01:55:40.925Z"
+     "updatedAt": "2026-10-31T14:08:24.946Z"
     }
    ]
   }
