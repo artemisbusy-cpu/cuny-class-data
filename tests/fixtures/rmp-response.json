@@ -1,0 +1,49 @@
+{
+  "data": {
+    "newSearch": {
+      "teachers": {
+        "edges": [
+          {
+            "node": {
+              "avgDifficulty": 3.6,
+              "avgRating": 2.6,
+              "firstName": "Dhruva",
+              "lastName": "Bhaskar",
+              "numRatings": 33,
+              "school": {
+                "name": "Baruch College"
+              },
+              "wouldTakeAgainPercent": 39.3939
+            }
+          },
+          {
+            "node": {
+              "avgDifficulty": 2.7,
+              "avgRating": 2.5,
+              "firstName": "Sandeep",
+              "lastName": "Bhaskar",
+              "numRatings": 21,
+              "school": {
+                "name": "Temple University"
+              },
+              "wouldTakeAgainPercent": 13.3333
+            }
+          },
+          {
+            "node": {
+              "avgDifficulty": 2.1,
+              "avgRating": 4.1,
+              "firstName": "Bhaskar",
+              "lastName": "Upadhyay",
+              "numRatings": 9,
+              "school": {
+                "name": "University of Minnesota - Twin Cities"
+              },
+              "wouldTakeAgainPercent": 77.7778
+            }
+          }
+        ]
+      }
+    }
+  }
+}

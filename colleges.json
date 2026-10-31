@@ -1,0 +1,22 @@
+[
+  { "code": "BAR01", "name": "Baruch College", "rmpId": "U2Nob29sLTIyMg==" },
+  { "code": "BMC01", "name": "Borough of Manhattan CC", "rmpId": "U2Nob29sLTE4NDcw" },
+  { "code": "BCC01", "name": "Bronx CC", "rmpId": "U2Nob29sLTQyNTc=" },
+  { "code": "BKL01", "name": "Brooklyn College", "rmpId": "U2Nob29sLTIyMw==" },
+  { "code": "CTY01", "name": "City College", "rmpId": "U2Nob29sLTIyNA==" },
+  { "code": "CSI01", "name": "College of Staten Island", "rmpId": "U2Nob29sLTIyNQ==" },
+  { "code": "NCC01", "name": "Guttman CC", "rmpId": "U2Nob29sLTE2NzU2" },
+  { "code": "HOS01", "name": "Hostos CC", "rmpId": "U2Nob29sLTUxMzY=" },
+  { "code": "HTR01", "name": "Hunter College", "rmpId": "U2Nob29sLTIyNg==" },
+  { "code": "JJC01", "name": "John Jay College", "rmpId": "U2Nob29sLTIyNw==" },
+  { "code": "KCC01", "name": "Kingsborough CC", "rmpId": "U2Nob29sLTQxMDU=" },
+  { "code": "LAG01", "name": "LaGuardia CC", "rmpId": "U2Nob29sLTQyNjk=" },
+  { "code": "LEH01", "name": "Lehman College", "rmpId": "U2Nob29sLTIyOA==" },
+  { "code": "MEC01", "name": "Medgar Evers College", "rmpId": "U2Nob29sLTIyOQ==" },
+  { "code": "NYT01", "name": "NYC College of Technology", "rmpId": "U2Nob29sLTIzMA==" },
+  { "code": "QNS01", "name": "Queens College", "rmpId": "U2Nob29sLTIzMQ==" },
+  { "code": "QCC01", "name": "Queensborough CC", "rmpId": "U2Nob29sLTQxNDE=" },
+  { "code": "SLU01", "name": "School of Labor & Urban Studies", "rmpId": "U2Nob29sLTE3Nzg1" },
+  { "code": "SPS01", "name": "School of Professional Studies", "rmpId": "U2Nob29sLTE0NjE3" },
+  { "code": "YRK01", "name": "York College", "rmpId": "U2Nob29sLTEzNzcx" }
+]

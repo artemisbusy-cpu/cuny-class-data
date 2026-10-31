@@ -1,0 +1,104 @@
+# Seasonal refresh of CUNY class data. Runs daily at 07:00 UTC (3 AM ET); src/season.ts decides
+# whether today is a run day (nightly in registration season, Sundays otherwise).
+# Baruch goes first as a smoke test; if it fails nothing else runs. Then the other colleges,
+# 3 at a time, each uploading its files; one final job commits everything at once.
+name: refresh
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.s.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - id: s
+        run: npx tsx src/season.ts >> "$GITHUB_OUTPUT"
+        env:
+          FORCE: ${{ github.event_name == 'workflow_dispatch' }}
+
+  smoke:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npm test
+      - run: npx tsx src/scrape.ts BAR01
+      - uses: actions/upload-artifact@v4
+        with:
+          name: data-BAR01
+          path: |
+            data/BAR01
+            data/ratings/BAR01.json
+          if-no-files-found: ignore
+
+  scrape:
+    needs: smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        college: [BMC01, BCC01, BKL01, CTY01, CSI01, NCC01, HOS01, HTR01, JJC01, KCC01, LAG01, LEH01, MEC01, NYT01, QNS01, QCC01, SLU01, SPS01, YRK01]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npx tsx src/scrape.ts ${{ matrix.college }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: data-${{ matrix.college }}
+          path: |
+            data/${{ matrix.college }}
+            data/ratings/${{ matrix.college }}.json
+          if-no-files-found: ignore
+
+  publish:
+    needs: [smoke, scrape]
+    if: always() && needs.smoke.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: data-*
+      # Each artifact holds data/<CODE>/... and data/ratings/<CODE>.json relative to data/.
+      - run: |
+          for d in artifacts/data-*; do cp -r "$d"/. data/; done
+          npx tsx src/build-index.ts
+      - run: |
+          git config user.name "cuny-class-data bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -m "data: refresh $(date -u +%Y-%m-%d)"
+          git push
+      - if: needs.scrape.result != 'success'
+        run: |
+          echo "One or more colleges failed; their last good data was kept."
+          exit 1

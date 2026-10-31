@@ -1,0 +1,44 @@
+{
+ "updatedAt": "2026-10-31T00:04:04.954Z",
+ "colleges": [
+  {
+   "code": "BAR01",
+   "name": "Baruch College",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 2244,
+     "updatedAt": "2026-10-31T00:02:32.771Z"
+    }
+   ]
+  },
+  {
+   "code": "HTR01",
+   "name": "Hunter College",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 3651,
+     "updatedAt": "2026-10-31T00:03:59.029Z"
+    }
+   ]
+  },
+  {
+   "code": "QNS01",
+   "name": "Queens College",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 1953,
+     "updatedAt": "2026-10-31T00:03:07.002Z"
+    }
+   ]
+  }
+ ]
+}
