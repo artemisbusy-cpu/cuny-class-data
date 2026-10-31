@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-31T00:04:04.954Z",
+ "updatedAt": "2026-10-31T01:04:02.578Z",
  "colleges": [
   {
    "code": "BAR01",
@@ -7,10 +7,161 @@
    "ratings": true,
    "terms": [
     {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 2354,
+     "updatedAt": "2026-10-31T00:26:21.007Z"
+    },
+    {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 2244,
-     "updatedAt": "2026-10-31T00:02:32.771Z"
+     "updatedAt": "2026-10-31T00:25:10.010Z"
+    }
+   ]
+  },
+  {
+   "code": "BMC01",
+   "name": "Borough of Manhattan CC",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 3502,
+     "updatedAt": "2026-10-31T00:35:05.613Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 3100,
+     "updatedAt": "2026-10-31T00:32:03.200Z"
+    },
+    {
+     "name": "Summer 2027",
+     "slug": "summer-2027",
+     "sections": 782,
+     "updatedAt": "2026-10-31T00:29:00.972Z"
+    }
+   ]
+  },
+  {
+   "code": "BCC01",
+   "name": "Bronx CC",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 340,
+     "updatedAt": "2026-10-31T00:31:37.528Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 301,
+     "updatedAt": "2026-10-31T00:29:23.462Z"
+    }
+   ]
+  },
+  {
+   "code": "BKL01",
+   "name": "Brooklyn College",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 12,
+     "updatedAt": "2026-10-31T00:33:09.058Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 1,
+     "updatedAt": "2026-10-31T00:30:00.936Z"
+    }
+   ]
+  },
+  {
+   "code": "CTY01",
+   "name": "City College",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 2354,
+     "updatedAt": "2026-10-31T00:39:16.833Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 2267,
+     "updatedAt": "2026-10-31T00:35:46.434Z"
+    },
+    {
+     "name": "Summer 2027",
+     "slug": "summer-2027",
+     "sections": 319,
+     "updatedAt": "2026-10-31T00:32:38.954Z"
+    }
+   ]
+  },
+  {
+   "code": "CSI01",
+   "name": "College of Staten Island",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 1800,
+     "updatedAt": "2026-10-31T00:39:37.552Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 1556,
+     "updatedAt": "2026-10-31T00:36:31.799Z"
+    }
+   ]
+  },
+  {
+   "code": "NCC01",
+   "name": "Guttman CC",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 251,
+     "updatedAt": "2026-10-31T00:37:20.294Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 194,
+     "updatedAt": "2026-10-31T00:36:20.226Z"
+    }
+   ]
+  },
+  {
+   "code": "HOS01",
+   "name": "Hostos CC",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 977,
+     "updatedAt": "2026-10-31T00:41:54.663Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 824,
+     "updatedAt": "2026-10-31T00:39:46.395Z"
     }
    ]
   },
@@ -20,10 +171,92 @@
    "ratings": true,
    "terms": [
     {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 3879,
+     "updatedAt": "2026-10-31T00:48:38.450Z"
+    },
+    {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 3651,
-     "updatedAt": "2026-10-31T00:03:59.029Z"
+     "updatedAt": "2026-10-31T00:43:22.310Z"
+    }
+   ]
+  },
+  {
+   "code": "JJC01",
+   "name": "John Jay College",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 2227,
+     "updatedAt": "2026-10-31T00:45:26.412Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 2267,
+     "updatedAt": "2026-10-31T00:42:38.697Z"
+    }
+   ]
+  },
+  {
+   "code": "LEH01",
+   "name": "Lehman College",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 2027,
+     "updatedAt": "2026-10-31T00:54:09.463Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 2353,
+     "updatedAt": "2026-10-31T00:50:43.197Z"
+    }
+   ]
+  },
+  {
+   "code": "MEC01",
+   "name": "Medgar Evers College",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 759,
+     "updatedAt": "2026-10-31T00:52:54.718Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 794,
+     "updatedAt": "2026-10-31T00:50:58.507Z"
+    }
+   ]
+  },
+  {
+   "code": "NYT01",
+   "name": "NYC College of Technology",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 3490,
+     "updatedAt": "2026-10-31T00:57:49.165Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 3079,
+     "updatedAt": "2026-10-31T00:54:50.931Z"
     }
    ]
   },
@@ -33,10 +266,92 @@
    "ratings": true,
    "terms": [
     {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 2056,
+     "updatedAt": "2026-10-31T00:59:40.272Z"
+    },
+    {
      "name": "Spring 2027",
      "slug": "spring-2027",
      "sections": 1953,
-     "updatedAt": "2026-10-31T00:03:07.002Z"
+     "updatedAt": "2026-10-31T00:56:19.478Z"
+    }
+   ]
+  },
+  {
+   "code": "QCC01",
+   "name": "Queensborough CC",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 2005,
+     "updatedAt": "2026-10-31T00:58:25.272Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 1901,
+     "updatedAt": "2026-10-31T00:56:23.475Z"
+    }
+   ]
+  },
+  {
+   "code": "SLU01",
+   "name": "School of Labor & Urban Studies",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 22,
+     "updatedAt": "2026-10-31T00:58:23.345Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 26,
+     "updatedAt": "2026-10-31T00:58:17.629Z"
+    }
+   ]
+  },
+  {
+   "code": "SPS01",
+   "name": "School of Professional Studies",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 471,
+     "updatedAt": "2026-10-31T01:02:04.141Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 500,
+     "updatedAt": "2026-10-31T01:00:20.641Z"
+    }
+   ]
+  },
+  {
+   "code": "YRK01",
+   "name": "York College",
+   "ratings": true,
+   "terms": [
+    {
+     "name": "Fall 2026",
+     "slug": "fall-2026",
+     "sections": 1234,
+     "updatedAt": "2026-10-31T01:03:43.090Z"
+    },
+    {
+     "name": "Spring 2027",
+     "slug": "spring-2027",
+     "sections": 1137,
+     "updatedAt": "2026-10-31T01:01:11.452Z"
     }
    ]
   }
