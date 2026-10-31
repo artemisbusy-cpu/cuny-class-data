@@ -7,3 +7,8 @@ export function passesSanity(prev: number | null, next: number): boolean {
   if (prev == null || prev === 0) return true;
   return next >= prev * 0.5;
 }
+
+/** A term CUNY lists before any classes are posted (e.g. next summer): skip it, it isn't a failure. */
+export function notPostedYet(prev: number | null, next: number): boolean {
+  return next === 0 && (prev == null || prev === 0);
+}

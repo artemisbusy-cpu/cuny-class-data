@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { GlobalSearch } from "./globalSearch.js";
 import { fetchSchoolTeachers, ratingsFor } from "./rmp.js";
-import { passesSanity } from "./sanity.js";
+import { notPostedYet, passesSanity } from "./sanity.js";
 import type { College, RatingsFile, Section, TermFile } from "./types.js";
 
 /**
@@ -52,6 +52,10 @@ async function main() {
     const path = `data/${college.code}/${file.slug}.json`;
     const prev = existsSync(path) ? (JSON.parse(readFileSync(path, "utf8")) as TermFile).sections : null;
     const secs = Math.round((Date.now() - t0) / 1000);
+    if (notPostedYet(prev, file.sections)) {
+      console.log(`${college.code} ${term.name}: no classes posted yet, skipped`);
+      continue;
+    }
     if (!passesSanity(prev, file.sections)) {
       console.error(`SANITY FAIL ${college.code} ${term.name}: ${file.sections} sections vs ${prev} last time. Not published.`);
       failed = true;

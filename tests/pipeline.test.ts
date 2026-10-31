@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { passesSanity } from "../src/sanity.js";
+import { notPostedYet, passesSanity } from "../src/sanity.js";
 import { shouldRun } from "../src/season.js";
 import { slug, toTermFile } from "../src/scrape.js";
 import { buildIndex } from "../src/build-index.js";
@@ -19,6 +19,12 @@ describe("sanity gate", () => {
     expect(passesSanity(1000, 500)).toBe(true);
     expect(passesSanity(null, 10)).toBe(true);
     expect(passesSanity(10, 0)).toBe(false);
+  });
+  it("skips a term with no classes posted yet, but not one that emptied out", () => {
+    expect(notPostedYet(null, 0)).toBe(true);
+    expect(notPostedYet(0, 0)).toBe(true);
+    expect(notPostedYet(2244, 0)).toBe(false);
+    expect(notPostedYet(null, 5)).toBe(false);
   });
 });
 
