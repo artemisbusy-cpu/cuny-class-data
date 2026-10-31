@@ -103,9 +103,21 @@ export function listSubjects(html: string): string[] {
   return [...new Set([...select.matchAll(/<option value='([A-Z0-9]{2,6})'>/g)].map((m) => m[1]))];
 }
 
+/**
+ * The undergraduate career option from the subject page. Most colleges use UGRD, but some use
+ * their own code (Kingsborough: UKCC "Undergraduate Kingsborough CC").
+ */
+export function undergradCareer(html: string): { value: string; name: string } {
+  const i = html.indexOf('name="courseCareer"');
+  const select = i < 0 ? "" : html.slice(i, html.indexOf("</select>", i));
+  const opts = [...select.matchAll(/<option value=['"]?([A-Z0-9]+)['"]?>\s*([^<]*?)\s*</g)].map((m) => ({ value: m[1], name: m[2] }));
+  return opts.find((o) => o.value === "UGRD") ?? opts.find((o) => /^undergraduate/i.test(o.name)) ?? { value: "UGRD", name: "Undergraduate" };
+}
+
 /** Minimal cookie-keeping HTTP session (the search is a 2-step JSP form tied to JSESSIONID). */
 export class GlobalSearch {
   private cookie = "";
+  private career = { value: "UGRD", name: "Undergraduate" };
   constructor(private pauseMs = 300) {}
 
   private async req(path: string, form?: Record<string, string>): Promise<string> {
@@ -137,6 +149,7 @@ export class GlobalSearch {
       selectedInstName: `${instName} | `, inst_selection: inst,
       selectedTermName: term.label, term_value: term.id, next_btn: "Next",
     });
+    this.career = undergradCareer(html);
     return listSubjects(html);
   }
 
@@ -144,7 +157,7 @@ export class GlobalSearch {
   async subject(subjectValue: string): Promise<Section[]> {
     const html = await this.req("CFSearchToolController", {
       selectedSubjectName: subjectValue, subject_name: subjectValue,
-      selectedCCareerName: "Undergraduate", courseCareer: "UGRD",
+      selectedCCareerName: this.career.name, courseCareer: this.career.value,
       selectedCAttrName: "", courseAttr: "", selectedCAttrVName: "", courseAttValue: "",
       selectedReqDName: "", reqDesignation: "", selectedSessionName: "", class_session: "",
       selectedModeInsName: "",

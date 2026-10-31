@@ -85,3 +85,13 @@ describe("RateMyProfessors", () => {
     expect(r["Someone Else"]).toBeNull();
   });
 });
+
+describe("undergradCareer", () => {
+  it("uses the college's own undergraduate code when it isn't UGRD", async () => {
+    const { undergradCareer } = await import("../src/globalSearch.js");
+    const html = (await import("node:fs")).readFileSync("tests/fixtures/globalsearch-career-kcc.html", "utf8");
+    expect(undergradCareer(html)).toEqual({ value: "UKCC", name: "Undergraduate Kingsborough CC" });
+    expect(undergradCareer('<select name="courseCareer"><option value="UGRD">Undergraduate</option></select>').value).toBe("UGRD");
+    expect(undergradCareer("").value).toBe("UGRD");
+  });
+});
