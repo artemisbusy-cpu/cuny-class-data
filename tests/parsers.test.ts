@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { courseHeader, listSubjects, listTerms, modeFrom, parseDates, parseResults, to24h } from "../src/globalSearch.js";
-import { parseRmpTeacher, pickBestMatch, ratingsFor } from "../src/rmp.js";
+import { fillFromOtherCampuses, parseRmpTeacher, pickBestMatch, ratingsFor, type RmpEdge } from "../src/rmp.js";
 
 const results = readFileSync("tests/fixtures/globalsearch-fin.html", "utf8");
 const rmp = JSON.parse(readFileSync("tests/fixtures/rmp-response.json", "utf8"));
@@ -79,6 +79,33 @@ describe("RateMyProfessors", () => {
     expect(best?.node.firstName).toBe("Dhruva");
     expect(pickBestMatch("Nobody Here", edges)).toBeNull();
   });
+  it("matches names CUNY and RMP write differently", () => {
+    const e = (firstName: string, lastName: string, numRatings = 5): RmpEdge => ({
+      node: { firstName, lastName, numRatings, avgRating: 4, avgDifficulty: 3, wouldTakeAgainPercent: 80 },
+    });
+    const pool = [e("Mohsin ", " Ahmed", 15), e("Kazi", "Ahmed", 9), e("Ron", "Kopp", 15), e("Nalani", "Kopp", 0),
+      e("Manal", "Abu Shaheen"), e("Patricia", "Cohen"), e("José", "Ruiz"), e("A.H.", "Khan"), e("Yang", "He"), e("Ye", "He")];
+    const who = (n: string) => { const m = pickBestMatch(n, pool)?.node; return m ? `${m.firstName.trim()} ${m.lastName.trim()}` : null; };
+    expect(who("Mohsin Ahmed")).toBe("Mohsin Ahmed"); // stray spaces on RMP
+    expect(who("Ronald Kopp")).toBe("Ron Kopp"); // nickname
+    expect(who("Manal Abu Shaheen")).toBe("Manal Abu Shaheen"); // two-word last name
+    expect(who("Patricia Sutherland-Cohen")).toBe("Patricia Cohen"); // hyphenated
+    expect(who("Jose Ruiz")).toBe("José Ruiz"); // accents
+    expect(who("Amir Khan")).toBe("A.H. Khan"); // RMP initial
+    expect(who("Muyuan He")).toBeNull(); // last name shared, no first-name match
+    expect(who("Kevin Kopp")).toBeNull();
+    expect(who("Naomi Cohen")).toBeNull(); // the only Cohen is someone else
+
+  });
+  it("fills unrated names from other campuses on an exact name match only", () => {
+    const node = (firstName: string, lastName: string, numRatings: number) =>
+      ({ node: { firstName, lastName, numRatings, avgRating: 4.5, avgDifficulty: 2, wouldTakeAgainPercent: 90, legacyId: 7 } });
+    const r = fillFromOtherCampuses({ "Amy  Crumly": null, "Ron Kopp": null, "Kept Here": { q: 1, d: 1, ta: null, n: 1, id: 1 } },
+      [node("Amy", "Crumly", 3), node("Ronald", "Kopp", 9), node("Kept", "Here", 50)]);
+    expect(r["Amy  Crumly"]?.n).toBe(3);
+    expect(r["Ron Kopp"]).toBeNull();
+    expect(r["Kept Here"]?.n).toBe(1);
+  });
   it("ratingsFor: co-taught falls through to the first rated name; unknown = null", () => {
     const r = ratingsFor(["Nobody Here / Dhruva Bhaskar", "Someone Else"], edges);
     expect(r["Nobody Here / Dhruva Bhaskar"]?.q).toBe(2.6);
@@ -108,6 +135,7 @@ describe("course headers across colleges", () => {
     ["ENG 1101CO - ENGL Composition I Corequisite", "ENG 1101CO"],
     ["ENG CL100 - CLIP Writing -Low-Intermediate", "ENG CL100"],
     ["ENG-W ES01 - English Start", "ENG-W ES01"],
+    ["MTH-W 23/23.5 - MTH 23/23.5 Workshop", "MTH-W 23/23.5"],
     ["STABD 1001 - Study Abroad", "STABD 1001"],
   ])("%s", (line, code) => expect(courseHeader(line)?.[0]).toBe(code));
   it("keeps the title and ignores page chrome", () => {

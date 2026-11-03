@@ -35,25 +35,56 @@ export function parseRmpTeacher(node: RmpNode): Rating | null {
   };
 }
 
+/** "  José  Ruiz. " -> "jose ruiz": RMP names often carry stray spaces, accents and periods. */
+export const normName = (s = "") =>
+  s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, " ").toLowerCase().replace(/\s+/g, " ").trim();
+
 /**
- * Best teacher edge for a name. Priority: last-name match -> school match -> first-name match ->
- * most ratings. Returns null when no last name matches.
+ * Last names worth trying for a CUNY name, best first. "Carlos Encina Oleart" -> ["encina oleart", "oleart"];
+ * "Ann Sutherland-Cohen" -> ["sutherland-cohen", "sutherland cohen", "cohen", "sutherland"].
+ */
+function lastNames(parts: string[]): string[] {
+  const out: string[] = [];
+  for (let i = 1; i < parts.length; i++) out.push(parts.slice(i).join(" "));
+  const last = parts[parts.length - 1];
+  if (last.includes("-")) out.push(last.replace(/-/g, " "), ...last.split("-").reverse());
+  return [...new Set(out)];
+}
+
+/** First names: exact, nickname prefix (Ron / Ronald), or an RMP initial (A / A.H.). */
+function firstMatches(cuny: string, rmp: string): boolean {
+  if (!cuny || !rmp) return false;
+  if (cuny === rmp) return true;
+  const a = cuny.split(" ")[0], b = rmp.split(" ")[0];
+  if (a === b) return true;
+  if (b.length === 1) return a[0] === b; // RMP "A" / "A.H."
+  return Math.min(a.length, b.length) >= 3 && (a.startsWith(b) || b.startsWith(a)); // Ron / Ronald
+}
+
+/**
+ * Best teacher edge for a name. Priority: last-name match (multi-word and hyphenated last names
+ * included) -> school match -> first-name match (exact, then nickname/initial) -> most ratings.
+ * Returns null unless the first name fits too: a last-name-only match is often a different person
+ * (CUNY "Naomi Fischer" vs the only RMP Fischer, "Stephanie").
  */
 export function pickBestMatch(name: string, edges: RmpEdge[], school?: string): RmpEdge | null {
-  const parts = name.trim().toLowerCase().split(/\s+/);
+  const parts = normName(name).split(" ");
+  if (parts.length < 2) return null;
   const first = parts[0];
-  const last = parts[parts.length - 1];
-  let pool = edges.filter((e) => e.node.lastName?.toLowerCase() === last);
-  if (pool.length === 0) return null;
-  if (school) {
-    const s = pool.filter((e) => e.node.school?.name?.toLowerCase() === school.toLowerCase());
-    if (s.length) pool = s;
+  const byRating = (l: RmpEdge[]) => [...l].sort((a, b) => (b.node.numRatings || 0) - (a.node.numRatings || 0))[0];
+  for (const last of lastNames(parts)) {
+    let pool = edges.filter((e) => normName(e.node.lastName) === last);
+    if (pool.length === 0) continue;
+    if (school) {
+      const s = pool.filter((e) => e.node.school?.name?.toLowerCase() === school.toLowerCase());
+      if (s.length) pool = s;
+    }
+    const exact = pool.filter((e) => normName(e.node.firstName) === first);
+    if (exact.length) return byRating(exact);
+    const loose = pool.filter((e) => firstMatches(first, normName(e.node.firstName)));
+    if (loose.length) return byRating(loose);
   }
-  const firstMatch = pool.filter((e) => e.node.firstName?.toLowerCase() === first);
-  // Only fall back to a last-name-only match when it is unambiguous.
-  if (!firstMatch.length && pool.length > 1) return null;
-  const chosen = firstMatch.length ? firstMatch : pool;
-  return [...chosen].sort((a, b) => (b.node.numRatings || 0) - (a.node.numRatings || 0))[0];
+  return null;
 }
 
 /** Ratings for each instructor string ("A / B" = co-taught: the first name with a rating wins). */
@@ -70,6 +101,28 @@ export function ratingsFor(names: string[], edges: RmpEdge[]): Record<string, Ra
     out[full] = r;
   }
   return out;
+}
+
+/**
+ * Fill unrated names from other CUNY campuses' RMP pages (many professors teach at two, but RMP
+ * lists them under one). Exact full-name match only: across 20 campuses, nickname matching would
+ * pair the wrong "John Smith". Mutates and returns `ratings`.
+ */
+export function fillFromOtherCampuses(ratings: Record<string, Rating | null>, edges: RmpEdge[]) {
+  const best = new Map<string, Rating>();
+  for (const e of edges) {
+    const r = parseRmpTeacher(e.node);
+    const k = normName(`${e.node.firstName} ${e.node.lastName}`);
+    if (r && (!best.has(k) || best.get(k)!.n < r.n)) best.set(k, r);
+  }
+  for (const full of Object.keys(ratings)) {
+    if (ratings[full]) continue;
+    for (const one of full.split(" / ")) {
+      const r = best.get(normName(one));
+      if (r) { ratings[full] = r; break; }
+    }
+  }
+  return ratings;
 }
 
 const QUERY = `query($s:ID!,$after:String){newSearch{teachers(query:{text:"",schoolID:$s},first:1000,after:$after){pageInfo{hasNextPage endCursor} edges{node{firstName lastName avgRating avgDifficulty wouldTakeAgainPercent numRatings legacyId}}}}}`;

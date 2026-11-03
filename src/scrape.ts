@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { GlobalSearch } from "./globalSearch.js";
-import { fetchSchoolTeachers, ratingsFor } from "./rmp.js";
+import { fetchSchoolTeachers, fillFromOtherCampuses, ratingsFor } from "./rmp.js";
 import { notPostedYet, passesSanity } from "./sanity.js";
 import type { College, RatingsFile, Section, TermFile } from "./types.js";
 
@@ -70,11 +70,20 @@ async function main() {
   if (college.rmpId && instructors.length) {
     const edges = await fetchSchoolTeachers(college.rmpId);
     const ratings = ratingsFor(instructors, edges);
+    const own = Object.values(ratings).filter(Boolean).length;
+    for (const other of colleges) {
+      if (other.code === college.code || !other.rmpId) continue;
+      try {
+        fillFromOtherCampuses(ratings, await fetchSchoolTeachers(other.rmpId, 300));
+      } catch (e) {
+        console.error(`${college.code} ratings from ${other.code}: ${String(e)}`); // a missed campus only costs coverage
+      }
+    }
     const out: RatingsFile = { college: college.code, rmpId: college.rmpId, updatedAt: new Date().toISOString(), ratings };
     mkdirSync("data/ratings", { recursive: true });
     writeFileSync(`data/ratings/${college.code}.json`, JSON.stringify(out));
     const rated = Object.values(ratings).filter(Boolean).length;
-    console.log(`${college.code} ratings: ${rated}/${Object.keys(ratings).length} instructors rated (${edges.length} on RMP)`);
+    console.log(`${college.code} ratings: ${rated}/${Object.keys(ratings).length} instructors rated (${own} on its own RMP page, ${edges.length} listed there)`);
   }
   if (failed) process.exit(1);
 }

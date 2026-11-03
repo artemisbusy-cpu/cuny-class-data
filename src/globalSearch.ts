@@ -54,10 +54,10 @@ export function statusFrom(alt: string): Status {
 
 /**
  * Course header -> ["FIN 3000", title]. Colleges format these differently: "FIN 3000", "ENGL. 1010" (Brooklyn),
- * "ENG 10", "ENG 100.5", "MAT 100SI", "ENG 12A0", "ENG CL100", "ENG-W ES01". Returns null for non-course lines.
+ * "ENG 10", "ENG 100.5", "MAT 100SI", "ENG 12A0", "ENG CL100", "ENG-W ES01", "MTH-W 23/23.5". Returns null for non-course lines.
  */
 export function courseHeader(line: string): [string, string] | null {
-  const m = line.match(/([A-Z]{2,6}(?:-[A-Z]{1,3})?)\.?\s+([A-Z]{0,3}\d[A-Z0-9.]{0,8})\s+-\s+(.*)$/);
+  const m = line.match(/([A-Z]{2,6}(?:-[A-Z]{1,3})?)\.?\s+([A-Z]{0,3}\d[A-Z0-9./]{0,8})\s+-\s+(.*)$/);
   return m ? [`${m[1]} ${m[2].replace(/\.$/, "")}`, m[3]] : null;
 }
 
