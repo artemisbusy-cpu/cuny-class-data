@@ -52,13 +52,22 @@ export function statusFrom(alt: string): Status {
   return /wait/i.test(alt) ? "waitlist" : "closed";
 }
 
+/**
+ * Course header -> ["FIN 3000", title]. Colleges format these differently: "FIN 3000", "ENGL. 1010" (Brooklyn),
+ * "ENG 10", "ENG 100.5", "MAT 100SI", "ENG 12A0", "ENG CL100", "ENG-W ES01". Returns null for non-course lines.
+ */
+export function courseHeader(line: string): [string, string] | null {
+  const m = line.match(/([A-Z]{2,6}(?:-[A-Z]{1,3})?)\.?\s+([A-Z]{0,3}\d[A-Z0-9.]{0,8})\s+-\s+(.*)$/);
+  return m ? [`${m[1]} ${m[2].replace(/\.$/, "")}`, m[3]] : null;
+}
+
 /** Parse a subject results page into one Section per row, keyed to its "FIN 3000" course header. */
 export function parseResults(html: string): Section[] {
   const rows: Section[] = [];
   for (const block of html.split(/class="testing_msg"/).slice(1)) {
-    const head = text(block.slice(0, block.indexOf("</span>") + 7)).match(/([A-Z]{2,5})\s+(\d{3,5}[A-Z]?)\s*-\s*(.*)$/);
+    const head = courseHeader(text(block.slice(0, block.indexOf("</span>") + 7)));
     if (!head) continue;
-    const code = `${head[1]} ${head[2]}`;
+    const code = head[0];
     for (const tr of block.split(/<tr>/i).slice(1)) {
       const cell = (label: string) => (tr.match(new RegExp(`data-label="${label}"[^>]*>([\\s\\S]*?)</td>`, "i")) || [])[1] ?? "";
       const classNumber = text(cell("Class"));
@@ -69,7 +78,7 @@ export function parseResults(html: string): Section[] {
       const instructor = [...new Set(lines(cell("Instructor")))].filter((n) => !/^(Staff|TBA)$/i.test(n)).join(" / ");
       rows.push({
         code,
-        title: text(cell("Course Topic")) || head[3],
+        title: text(cell("Course Topic")) || head[1],
         classNumber,
         section: sectionText.split("-")[0].trim(),
         component: (sectionText.match(/-([A-Z]{3})\b/) || [])[1] ?? "LEC",

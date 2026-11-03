@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { listSubjects, listTerms, modeFrom, parseDates, parseResults, to24h } from "../src/globalSearch.js";
+import { courseHeader, listSubjects, listTerms, modeFrom, parseDates, parseResults, to24h } from "../src/globalSearch.js";
 import { parseRmpTeacher, pickBestMatch, ratingsFor } from "../src/rmp.js";
 
 const results = readFileSync("tests/fixtures/globalsearch-fin.html", "utf8");
@@ -93,5 +93,26 @@ describe("undergradCareer", () => {
     expect(undergradCareer(html)).toEqual({ value: "UKCC", name: "Undergraduate Kingsborough CC" });
     expect(undergradCareer('<select name="courseCareer"><option value="UGRD">Undergraduate</option></select>').value).toBe("UGRD");
     expect(undergradCareer("").value).toBe("UGRD");
+  });
+});
+
+describe("course headers across colleges", () => {
+  it.each([
+    ["FIN 3000 - Principles of Finance", "FIN 3000"],
+    ["ENGL. 1010 - English Composition I", "ENGL 1010"],
+    ["ENG 10 - Accelerated Writing Skills", "ENG 10"],
+    ["ENG 8 - Non-Native Writing", "ENG 8"],
+    ["ENG 100.5 - Intensive English Composition", "ENG 100.5"],
+    ["MAT 100SI - Intro College Math (SI)", "MAT 100SI"],
+    ["ENG 12A0 - Composition I ALP", "ENG 12A0"],
+    ["ENG 1101CO - ENGL Composition I Corequisite", "ENG 1101CO"],
+    ["ENG CL100 - CLIP Writing -Low-Intermediate", "ENG CL100"],
+    ["ENG-W ES01 - English Start", "ENG-W ES01"],
+    ["STABD 1001 - Study Abroad", "STABD 1001"],
+  ])("%s", (line, code) => expect(courseHeader(line)?.[0]).toBe(code));
+  it("keeps the title and ignores page chrome", () => {
+    expect(courseHeader("CL100 - x")).toBeNull();
+    expect(courseHeader("Brooklyn College | 2026 Fall Term | 159 class section(s) found")).toBeNull();
+    expect(courseHeader("ENG CL100 - CLIP Writing -Low-Intermediate")?.[1]).toBe("CLIP Writing -Low-Intermediate");
   });
 });
